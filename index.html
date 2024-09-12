@@ -1,141 +1,50 @@
 
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="author" content="Timothé Malahieude" />
-	<meta name="description" content="Free online Mario Kart game" />
-	<meta name="keywords" content="Mario, Kart, PC, game, race, track, builder, multiplayer, online" />
-	<meta name="viewport" content="width=device-width, user-scalable=no" />
-	<meta name="thumbnail" content="https://mkpc.malahieude.net/images/screenshots/ss1.png" />
-	<meta property="og:image" content="https://mkpc.malahieude.net/images/screenshots/ss1.png" />
-    <title>Mario Kart PC</title>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RetroEmulator</title>
 
-<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	
+		<style>
+		html, body {
+			height: 100%;
+		}
+		body { 
+			margin: 0;
+			padding: 0;
+			background-color: #222;
+			overflow-y:hidden;
+			overflow-x:hidden;
+		}
 
-<link rel="stylesheet" media="screen" type="text/css" href="styles/mariokart.css" />
+		#gameDivId {
+			height: 100%;
+		}
+		</style>
 
-<link rel="stylesheet" type="text/css" href="styles/online.css" />
-<script defer src="scripts/online.js"></script><script type="text/javascript">
-var page = "MK";
-var selectedPlayers = 8;
-var selectedTeams = 0;
-var selectedDifficulty = 1;
-var language = true;
-var lCircuits = ["Mario Circuit 1","Donut Plains 1","Koopa Beach 1","Choco Island 1","Vanilla Lake 1","Ghost Valley 1","Mario Circuit 2","Bowser Castle 1","Donut Plains 2","Bowser Castle 2","Choco Island 2","Mario Circuit 3","Koopa Beach 2","Vanilla Lake 2","Ghost Valley 2","Donut Plains 3","Ghost Valley 3","Mario Circuit 4","Bowser Castle 3","Rainbow Road","Peach Circuit","Shy Guy Beach","Riverside Park","Bowser Castle I","Mario Circuit","Boo Lake","Cheese Land","Bowser Castle II","Luigi Circuit","Sky Garden","Cheep-Cheep Island","Sunset Wilds","Snow Land","Ribbon Road","Yoshi Desert","Bowser Castle III","Lakeside Park","Broken Pier","Bowser Castle IV","Rainbow Road","Figure 8 Circuit","Yoshi Falls","Cheep Cheep Beach","Luigi's Mansion","Desert Hills","Delfino Square","Waluigi Pinball","Shroom Ridge","DK Pass","Tick-Tock Clock","Mario Circuit","Airship Fortress","Wario Stadium","Peach Gardens","Bowser's Castle","Rainbow Road","Battle Course 1","Battle Course 2","Battle Course 3","Battle Course 4","Battle Course I","Battle Course II","Battle Course III","Battle Course IV","Nintendo DS","Twilight House","Palm Shore","Tart Top"];
-var dCircuits = ["<small>SNES<\/small> Mario Circuit 1","<small>SNES<\/small> Donut Plains 1","<small>SNES<\/small> Koopa Beach 1","<small>SNES<\/small> Choco Island 1","<small>SNES<\/small> Vanilla Lake 1","<small>SNES<\/small> Ghost Valley 1","<small>SNES<\/small> Mario Circuit 2","<small>SNES<\/small> Bowser Castle 1","<small>SNES<\/small> Donut Plains 2","<small>SNES<\/small> Bowser Castle 2","<small>SNES<\/small> Choco Island 2","<small>SNES<\/small> Mario Circuit 3","<small>SNES<\/small> Koopa Beach 2","<small>SNES<\/small> Vanilla Lake 2","<small>SNES<\/small> Ghost Valley 2","<small>SNES<\/small> Donut Plains 3","<small>SNES<\/small> Ghost Valley 3","<small>SNES<\/small> Mario Circuit 4","<small>SNES<\/small> Bowser Castle 3","<small>SNES<\/small> Rainbow Road","<small>GBA<\/small> Peach Circuit","<small>GBA<\/small> Shy Guy Beach","<small>GBA<\/small> Riverside Park","<small>GBA<\/small> Bowser Castle I","<small>GBA<\/small> Mario Circuit","<small>GBA<\/small> Boo Lake","<small>GBA<\/small> Cheese Land","<small>GBA<\/small> Bowser Castle II","<small>GBA<\/small> Luigi Circuit","<small>GBA<\/small> Sky Garden","<small>GBA<\/small> Cheep-Cheep Island","<small>GBA<\/small> Sunset Wilds","<small>GBA<\/small> Snow Land","<small>GBA<\/small> Ribbon Road","<small>GBA<\/small> Yoshi Desert","<small>GBA<\/small> Bowser Castle III","<small>GBA<\/small> Lakeside Park","<small>GBA<\/small> Broken Pier","<small>GBA<\/small> Bowser Castle IV","<small>GBA<\/small> Rainbow Road","<small>DS<\/small> Figure 8 Circuit","<small>DS<\/small> Yoshi Falls","<small>DS<\/small> Cheep Cheep Beach","<small>DS<\/small> Luigi's Mansion","<small>DS<\/small> Desert Hills","<small>DS<\/small> Delfino Square","<small>DS<\/small> Waluigi Pinball","<small>DS<\/small> Shroom Ridge","<small>DS<\/small> DK Pass","<small>DS<\/small> Tick-Tock Clock","<small>DS<\/small> Mario Circuit","<small>DS<\/small> Airship Fortress","<small>DS<\/small> Wario Stadium","<small>DS<\/small> Peach Gardens","<small>DS<\/small> Bowser's Castle","<small>DS<\/small> Rainbow Road","<small>SNES<\/small> Battle Course 1","<small>SNES<\/small> Battle Course 2","<small>SNES<\/small> Battle Course 3","<small>SNES<\/small> Battle Course 4","<small>GBA<\/small> Battle Course I","<small>GBA<\/small> Battle Course II","<small>GBA<\/small> Battle Course III","<small>GBA<\/small> Battle Course IV","<small>DS<\/small> Nintendo DS","<small>DS<\/small> Twilight House","<small>DS<\/small> Palm Shore","<small>DS<\/small> Tart Top"];
-var recorder = "";
-var cp = {
-	"mario":[0.5,0.5,0.5,0.5],
-	"luigi":[0.625,0.5,0.375,0.5],
-	"peach":[0.75,0.375,0.75,0.25],
-	"toad":[0.625,0.375,0.625,0],
-	"yoshi":[0.5,0.5,0.5,0.5],
-	"bowser":[0,1,0.125,1],
-	"donkey-kong":[0.25,0.875,0,0.875],
-	"daisy":[1,0.375,1,0.25],
-	"wario":[0.5,0.75,0,0.75],
-	"koopa":[0.375,0.5,0.625,0.375],
-	"waluigi":[0.875,0.25,0.625,0.625],
-	"maskass":[0.625,0.5,0.375,0.5],
-	"birdo":[0.875,0.125,0.875,0.5],
-	"roi_boo":[0.375,0.75,0.125,0.75],
-	"frere_marto":[0.125,0.625,0.375,0.625],
-	"bowser_skelet":[0.25,0.875,0.125,0.875],
-	"flora_piranha":[0.25,1,0,1],
-	"link":[0.75,0.5,0.25,0.625],
-	"bowser_jr":[0.75,0.375,0.5,0.375],
-	"harmonie":[0,0.625,0.5,0.625],
-	"diddy-kong":[0.5,0.375,0.75,0],
-	"skelerex":[0.25,0.5,0.75,0.25],
-	"funky-kong":[0.25,0.75,0.25,0.875],
-	"toadette":[0.75,0.25,0.75,0]
-};
-var pUnlocked = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0];
-var ptsGP = "31330323133300";
-var isCup = false, isBattle = false, isSingle = false, complete = false, simplified = false;
-var baseOptions = {
-	quality: localStorage.getItem("iQuality") ? +localStorage.getItem("iQuality") : 5,
-	music: localStorage.getItem("bMusic") ? +localStorage.getItem("bMusic"):0,
-	sfx: localStorage.getItem("iSfx") ? +localStorage.getItem("iSfx"):0,
-	screenscale: localStorage.getItem("iScreenScale") ? +localStorage.getItem("iScreenScale"):(screen.width<800)?((screen.width<480)?4:6):((screen.width<1500)?8:10)};
-var PERSOS_DIR = "images/sprites/uploads/";
-var NBCIRCUITS = 56;
-</script>
-<script type="text/javascript" src="scripts/maps.php"></script>
-<script type="text/javascript" src="scripts/mk.v247.js"></script><script type="text/javascript">
-document.addEventListener("DOMContentLoaded", MarioKart);
-</script>
+	
+	<meta name="robots" content="noindex, nofollow"/>
 </head>
 <body>
-<div id="mariokartcontainer"></div>
 
-<div id="virtualkeyboard"></div>
+	<div id = "gameDivId"></div>
 
-<form name="modes" method="get" action="#null" onsubmit="return false">
-	<div id="options-ctn">
-	<table cellpadding="3" cellspacing="0" border="0" id="options">
-	<tr>
-	<td id="pSize">&nbsp;</td>
-	<td id="vSize">
-	</td>
-	<td rowspan="4" id="commandes">&nbsp;</td>
-	</tr>
-	<tr><td id="pMusic">
-	&nbsp;
-	</td>
-	<td id="vMusic">
-	&nbsp;
-	</td></tr>
-	<tr><td id="pSfx">
-	&nbsp;
-	</td>
-	<td id="vSfx">
-	&nbsp;
-	</td></tr>
-	<tr><td id="pFps">
-	&nbsp;
-	</td>
-	<td id="vFps">
-	&nbsp;
-	</td></tr>
-	</table>
-</div>
-<div id="vPub"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- Mario Kart PC -->
-    <ins class="adsbygoogle"
-        style="display:inline-block;width:468px;height:60px"
-        data-ad-client="ca-pub-1340724283777764"
-        data-ad-slot="6691323567"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script><script async type="text/javascript" src="scripts/grlp.js?reload=1"></script></div></form>
-<div id="dMaps"></div>
-<div id="scroller">
-	<div style="position: absolute">
-		<img class="aObjet" alt="." src="images/items/fauxobjet.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/banane.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/carapace.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/bobomb.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/carapacerouge.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/carapacebleue.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/champi.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/megachampi.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/etoile.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/eclair.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/billball.png" /><br />&nbsp;<br />
-		<img class="aObjet" alt="." src="images/items/champior.png" /><br />
-	</div>
-</div><div id="maps-list">
-<img src="images/selectors/select_map1.png" alt="" /><img src="images/selectors/select_map5.png" alt="" /><img src="images/selectors/select_map9.png" alt="" /><img src="images/selectors/select_map13.png" alt="" /><img src="images/selectors/select_map17.png" alt="" /><img src="images/selectors/select_map21.png" alt="" /><img src="images/selectors/select_map25.png" alt="" /><img src="images/selectors/select_map29.png" alt="" /><img src="images/selectors/select_map33.png" alt="" /><img src="images/selectors/select_map37.png" alt="" /><img src="images/selectors/select_map41.png" alt="" /><img src="images/selectors/select_map45.png" alt="" /></div>
-<p id="presentation">
-<strong><a href="index.php">Mario Kart PC</a></strong><br />
-Challenge up to 8 players in 6 game modes !<br />
-In the <strong>Grand Prix</strong> tournaments, win 5 cups of 4 races in order to unlock the 9 secret characters !<br />
-With the <strong>Time trial</strong> mode, break the other players' <a href="classement.php" target="_blank">records</a> and become world champion !<br />
-In <strong>VS</strong> races, confront CPUs and/or a friend on not less than 20 races !<br />
-On <strong>battle mode</strong>, destroy your opponents' balloons in fierce fighting !<br />
-With the <strong>track builder</strong>, create as many circuits and courses as you want, with your imagination the only limit !<br />
-On <strong><a href="online.php">online mode</a></strong>, compete against players from around the world and climb in the <a href="bestscores.php" target="_blank">rankings</a> !
-	</p></body>
+	
+		<script>
+ 
+		var RetroLoaderConfig = {
+            divId : "gameDivId", 
+            sys : "nds",
+            rom : "//static.arcadespot.com/wp-content/uploads/2019/08/mario-kart-ds.zip",
+			        };
+		
+		</script>
+		
+	
+	
+		<script src="//load.retroemulator.com/retroLoader.js" type="text/javascript"></script>
+
+	
+</body>
 </html>
